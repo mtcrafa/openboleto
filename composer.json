@@ -1,15 +1,19 @@
 {
-    "name": "kriansa/openboleto",
+    "name": "jeronimofagundes/openboleto",
     "type": "library",
     "description": "Biblioteca para geração de boletos bancários.",
     "keywords": ["boleto", "boleto bancario"],
-    "homepage": "http://github.com/kriansa/openboleto",
+    "homepage": "http://github.com/jeronimofagundes/openboleto",
     "license": "MIT",
     "authors": [
         {
             "name": "Daniel Garajau",
             "email": "kriansa@facebook.com"
-        }
+        },
+		{
+			"name": "Jerônimo Fagundes da Silva",
+			"email": "jeronimofagundesdasilva@gmail.com"
+		}
     ],
     "require": {
         "php": ">=5.3.0"
