@@ -29,32 +29,32 @@ use OpenBoleto\BoletoAbstract;
 use OpenBoleto\Exception;
 
 /**
- * Classe boleto HSBC.
+ * Classe boleto Banrisul.
  *
  * @package    OpenBoleto
  * @author     Jerônimo Fagundes da Silva <http://github.com/jeronimofagundes>
  * @license    MIT License
  * @version    1.0
  */
-class Hsbc extends BoletoAbstract
+class Banrisul extends BoletoAbstract
 {
 	/**
 	 * Código do banco
 	 * @var string
 	 */
-	protected $codigoBanco = '399';
+	protected $codigoBanco = '041';
 
 	/**
 	 * Localização do logotipo do banco, referente ao diretório de imagens
 	 * @var string
 	 */
-	protected $logoBanco = 'hsbc.gif';
+	protected $logoBanco = 'banrisul.gif';
 
 	/**
 	 * Linha de local de pagamento
 	 * @var string
 	 */
-	protected $localPagamento = 'ATE O VENCIMENTO PAGUE PREFERENCIALMENTE NO HSBC<BR>APOS VENCIMENTO PAGUE SOMENTE NO HSBC';
+	protected $localPagamento = 'ATE O VENCIMENTO PAGUE PREFERENCIALMENTE NO BANRISUL<BR>APOS VENCIMENTO PAGUE SOMENTE NO BANRISUL';
 
 	/**
 	 * Define as carteiras disponíveis para este banco
@@ -86,7 +86,7 @@ class Hsbc extends BoletoAbstract
 	 * Define o número do convênio. Sempre use string pois a quantidade de caracteres é validada.
 	 *
 	 * @param string $convenio
-	 * @return Hsbc
+	 * @return Banrisul
 	 */
 	public function setConvenio($convenio)
 	{
@@ -117,28 +117,24 @@ class Hsbc extends BoletoAbstract
 
 	/**
 	 * Método para gerar o código da posição de 20 a 44
-	 * Formato Campo Livre HSBC:
-	 * 	01234567    01234567890123  0123
-	 * 	--------    --------------  ----
-	 * 	Conta s/DV  Nosso número    Data Juliana
 	 *
 	 * @return string
 	 * @throws \OpenBoleto\Exception
 	 */
     public function getCampoLivre()
     {
-		$dt = explode('/', $this->getDataVencimento()->format('d/m/Y'));
-
-        return static::zeroFill($this->getConta(), 7) . static::zeroFill($this->getNossoNumero(), 13) . $this->_dataJuliana($dt[2], $dt[1], $dt[0]) . 2;
-
+        return $this->_calcNC('21' . $this->getAgencia() . $this->getconta() . $this->getNossoNumero() . '40');
 	}
 
-	protected function _dataJuliana($ano, $mes, $dia){
-		$stamp = strtotime("$ano-$mes-$dia");
 
-			$dia = sprintf("%03d", intval( date("z",$stamp) + 1 ));
-			$ano = substr($ano,-1);
-
-		return $dia.$ano;
+	protected function _calcNC ($n) {
+		$mod10 = static::modulo10 ($n);
+		$mod11 = statis::modulo11 ($n.$mod10);
+		if ($mod11 == 10) {
+			if ($mod10 == 9) $mod10 = 0;
+			$mod10++;
+			$n .= $mod10.static::modulo11 ($n.$mod10);
+		} else $n .= $mod10.$mod11;
+		return $n;
 	}
 }
