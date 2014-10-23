@@ -149,4 +149,14 @@ class Sicredi extends BoletoAbstract
 
 		return $cl;
 	}
+
+	/**
+     * Retorna o campo Agência/Cedente do boleto
+     *
+     * @return string
+     */
+    public function getAgenciaCodigoCedente()
+	{
+		return $this->getAgencia() . '.' . $this->getConvenio() . '.' . $this->getConta();
+	}
 }
