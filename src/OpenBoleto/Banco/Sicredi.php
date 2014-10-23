@@ -66,20 +66,20 @@ class Sicredi extends BoletoAbstract
 	 * Define o número do convênio
 	 * @var string
 	 */
-    protected $convenio;
+	protected $convenio;
 
-    /**
-     * Define o código da carteira (Com ou sem registro)
-     *
-     * @param string $carteira
-     * @return BoletoAbstract
-     * @throws Exception
-     */
-    public function setCarteira($carteira)
-    {
-        $this->carteira = $carteira;
-        return $this;
-    }
+	/**
+	 * Define o código da carteira (Com ou sem registro)
+	 *
+	 * @param string $carteira
+	 * @return BoletoAbstract
+	 * @throws Exception
+	 */
+	public function setCarteira($carteira)
+	{
+		$this->carteira = $carteira;
+		return $this;
+	}
 
 
 	/**
@@ -133,8 +133,8 @@ class Sicredi extends BoletoAbstract
 	 * @return string
 	 * @throws \OpenBoleto\Exception
 	 */
-    public function getCampoLivre()
-    {
+	public function getCampoLivre()
+	{
 		$cl =
 			'31' .
 			$this->gerarNossoNumero() .

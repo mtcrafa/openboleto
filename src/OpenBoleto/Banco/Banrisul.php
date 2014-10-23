@@ -57,6 +57,12 @@ class Banrisul extends BoletoAbstract
 	protected $localPagamento = 'ATE O VENCIMENTO PAGUE PREFERENCIALMENTE NO BANRISUL<BR>APOS VENCIMENTO PAGUE SOMENTE NO BANRISUL';
 
 	/**
+	 * Espécie do documento
+	 * @var string
+	 */
+	protected $especieDoc = 'RC';
+
+	/**
 	 * Define as carteiras disponíveis para este banco
 	 * @var array
 	 */
@@ -66,20 +72,20 @@ class Banrisul extends BoletoAbstract
 	 * Define o número do convênio
 	 * @var string
 	 */
-    protected $convenio;
+	protected $convenio;
 
-    /**
-     * Define o código da carteira (Com ou sem registro)
-     *
-     * @param string $carteira
-     * @return BoletoAbstract
-     * @throws Exception
-     */
-    public function setCarteira($carteira)
-    {
-        $this->carteira = $carteira;
-        return $this;
-    }
+	/**
+	 * Define o código da carteira (Com ou sem registro)
+	 *
+	 * @param string $carteira
+	 * @return BoletoAbstract
+	 * @throws Exception
+	 */
+	public function setCarteira($carteira)
+	{
+		$this->carteira = $carteira;
+		return $this;
+	}
 
 
 	/**
@@ -121,18 +127,18 @@ class Banrisul extends BoletoAbstract
 	 * @return string
 	 * @throws \OpenBoleto\Exception
 	 */
-    public function getCampoLivre()
-    {
-        return $this->_calcNC(
-            '21' .
-            static::zeroFill($this->getAgencia(), 4) .
-            static::zeroFill($this->getConta() . $this->getContaDV(), 7) .
-            static::zeroFill($this->getSequencial(), 8) .
-            '40'
-        );
+	public function getCampoLivre()
+	{
+		return $this->_calcNC(
+			'21' .
+			static::zeroFill($this->getAgencia(), 4) .
+			static::zeroFill($this->getConta() . $this->getContaDV(), 7) .
+			static::zeroFill($this->getSequencial(), 8) .
+			'40'
+		);
 	}
 
-    protected function _calcMod10 ($n) {
+	protected function _calcMod10 ($n) {
 		$t = strlen ($n) - 1;
 		$fator = 2;
 		for ($i=$t;$i>=0;$i--) {
@@ -145,7 +151,7 @@ class Banrisul extends BoletoAbstract
 		$d = 10 - $resto;
 		if ($resto == 0) $d = 0;
 		return $d;
-    }
+	}
 
 	protected function _calcMod11 ($n, $maxFator = 7) {
 		$t = strlen ($n) - 1;
