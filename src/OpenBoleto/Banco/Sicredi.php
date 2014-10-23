@@ -159,4 +159,14 @@ class Sicredi extends BoletoAbstract
 	{
 		return $this->getAgencia() . '.' . $this->getConvenio() . '.' . $this->getConta();
 	}
+
+    /**
+     * Retorna o campo Número do documento
+     *
+     * @return int
+     */
+	public function getNumeroDocumento() {
+		$this->getSequencial();
+	}
+
 }
