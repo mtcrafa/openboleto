@@ -119,6 +119,10 @@ class Hsbc extends BoletoAbstract
 
 	/**
 	 * Método para gerar o código da posição de 20 a 44
+	 * Formato Campo Livre HSBC:
+	 * 	01234567    01234567890123  0123
+	 * 	--------    --------------  ----
+	 * 	Conta s/DV  Nosso número    Data Juliana
 	 *
 	 * @return string
 	 * @throws \OpenBoleto\Exception
