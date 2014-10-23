@@ -122,7 +122,7 @@ class Real extends BoletoAbstract
      */
     public function getAgenciaCodigoCedente()
 	{
-		return $this->getAgencia() . '/' . $this->getConvenio() . '/' . $this->getRealDv();
+		return $this->getAgencia() . '/' . $this->getConta() . '/' . $this->getRealDv();
 	}
 
     /**
