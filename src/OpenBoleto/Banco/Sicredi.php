@@ -119,7 +119,7 @@ class Sicredi extends BoletoAbstract
 			static::zeroFill($this->getConvenio(), 2) .
 			static::zeroFill($this->getConta(), 5) .
 			$nn
-		);
+		)['digito'];
 		$mod11 = ($mod11 == 1) ? 0 : $mod11;
 
 		$nn .= $mod11;
@@ -142,7 +142,7 @@ class Sicredi extends BoletoAbstract
 			static::zeroFill($this->getConvenio(), 2) .
 			static::zeroFill($this->getConta(), 5) .
 			'00';
-		$mod11 = static::modulo11($cl);
+		$mod11 = static::modulo11($cl)['digito'];
 		$mod11 = ($mod11 == 1) ? 0 : $mod11;
 
 		$cl .= $mod11;
