@@ -129,7 +129,7 @@ class Banrisul extends BoletoAbstract
 
 	protected function _calcNC ($n) {
 		$mod10 = static::modulo10 ($n);
-		$mod11 = statis::modulo11 ($n.$mod10);
+		$mod11 = static::modulo11 ($n.$mod10);
 		if ($mod11 == 10) {
 			if ($mod10 == 9) $mod10 = 0;
 			$mod10++;
