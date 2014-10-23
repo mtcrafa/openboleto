@@ -112,7 +112,7 @@ class Banrisul extends BoletoAbstract
 	 */
 	protected function gerarNossoNumero()
 	{
-		return $this->getSequencial();
+		return $this->_calcNC(static::zeroFill($this->getSequencial(), 8));
 	}
 
 	/**
@@ -127,7 +127,7 @@ class Banrisul extends BoletoAbstract
             '21' .
             static::zeroFill($this->getAgencia(), 4) .
             static::zeroFill($this->getConta() . $this->getContaDV(), 7) .
-            static::zeroFill($this->getNossoNumero(), 8) .
+            static::zeroFill($this->getSequencial(), 8) .
             '40'
         );
 	}
