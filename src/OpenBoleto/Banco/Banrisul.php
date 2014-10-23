@@ -123,17 +123,53 @@ class Banrisul extends BoletoAbstract
 	 */
     public function getCampoLivre()
     {
-        return $this->_calcNC('21' . $this->getAgencia() . $this->getconta() . $this->getNossoNumero() . '40');
+        return $this->_calcNC(
+            '21' .
+            static::zeroFill($this->getAgencia(), 4) .
+            static::zeroFill($this->getConta() . $this->getContaDV(), 7) .
+            static::zeroFill($this->getNossoNumero(), 8) .
+            '40'
+        );
 	}
 
+    protected function _calcMod10 ($n) {
+		$t = strlen ($n) - 1;
+		$fator = 2;
+		for ($i=$t;$i>=0;$i--) {
+			$v = $n{$i} * $fator;
+			if ($v > 9) $v = $v - 9;
+			$fator = ($fator == 2) ? 1 : 2;
+			$soma += $v;
+		}
+		$resto = $soma % 10;
+		$d = 10 - $resto;
+		if ($resto == 0) $d = 0;
+		return $d;
+    }
+
+	protected function _calcMod11 ($n, $maxFator = 7) {
+		$t = strlen ($n) - 1;
+		$fator = 2;
+		for ($i=$t;$i>=0;$i--) {
+			$v = $n{$i} * $fator;
+			$fator = ($fator >= $maxFator) ? 2 : ++$fator;
+			$soma += $v;
+		}
+		if ($soma < 11) $resto = $soma;
+		else $resto = $soma % 11;
+		if (($maxFator == 9) and ($resto == 0 or $resto == 10 or $resto == 1)) return 1;
+		if ($resto == 0) return 0;
+		$d = 11 - $resto;
+		return $d;
+	}
 
 	protected function _calcNC ($n) {
-		$mod10 = static::modulo10 ($n);
-		$mod11 = static::modulo11 ($n.$mod10);
+		$mod10 = $this->_calcMod10 ($n);
+		$mod11 = $this->_calcMod11 ($n.$mod10);
 		if ($mod11 == 10) {
 			if ($mod10 == 9) $mod10 = 0;
 			$mod10++;
-			$n .= $mod10.static::modulo11 ($n.$mod10);
+			$n .= $mod10.$this->_calcMod11 ($n.$mod10);
 		} else $n .= $mod10.$mod11;
 		return $n;
 	}
