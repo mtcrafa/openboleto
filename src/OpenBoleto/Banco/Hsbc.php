@@ -56,19 +56,33 @@ class Hsbc extends BoletoAbstract
 	 * Linha de local de pagamento
 	 * @var string
 	 */
-	protected $localPagamento = 'ATÉ O VENCIMENTO PAGUE PREFERENCIALMENTE NO HSBC<BR>APÓS VENCIMENTO PAGUE SOMENTE NO HSBC';
+	protected $localPagamento = 'ATE O VENCIMENTO PAGUE PREFERENCIALMENTE NO HSBC<BR>APOS VENCIMENTO PAGUE SOMENTE NO HSBC';
 
 	/**
 	 * Define as carteiras disponíveis para este banco
 	 * @var array
 	 */
-	protected $carteiras = array('00');
+	protected $carteiras = array();
 
 	/**
 	 * Define o número do convênio
 	 * @var string
 	 */
-	protected $convenio;
+    protected $convenio;
+
+    /**
+     * Define o código da carteira (Com ou sem registro)
+     *
+     * @param string $carteira
+     * @return BoletoAbstract
+     * @throws Exception
+     */
+    public function setCarteira($carteira)
+    {
+        $this->carteira = $carteira;
+        return $this;
+    }
+
 
 	/**
 	 * Define o número do convênio. Sempre use string pois a quantidade de caracteres é validada.
@@ -109,12 +123,20 @@ class Hsbc extends BoletoAbstract
 	 * @return string
 	 * @throws \OpenBoleto\Exception
 	 */
-	public function getCampoLivre()
-	{
-		return static::zeroFill($this->getAgencia(), 4) .
-			static::zeroFill($this->getCarteira(), 2) .
-			static::zeroFill($this->getNossoNumero(), 11) .
-			static::zeroFill($this->getConta(), 7) .
-			'0';
+    public function getCampoLivre()
+    {
+		$dt = explode('/', $this->getDataVencimento()->format('d/m/Y'));
+
+        return static::zeroFill($this->getConta(), 7) . static::zeroFill($this->getNossoNumero(), 13) . $this->_dataJuliana($dt[2], $dt[1], $dt[0]) . 2;
+
+	}
+
+	protected function _dataJuliana($ano, $mes, $dia){
+		$stamp = strtotime("$ano-$mes-$dia");
+
+			$dia = sprintf("%03d", intval( date("z",$stamp) + 1 ));
+			$ano = substr($ano,-1);
+
+		return $dia.$ano;
 	}
 }
