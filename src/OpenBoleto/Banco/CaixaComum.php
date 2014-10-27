@@ -65,6 +65,12 @@ class CaixaComum extends BoletoAbstract
      */
     protected $carteiras = array('SR', 'SR16', 'CR');
 
+	/**
+	 * Define o convênio.
+	 * @var string
+	 */
+	protected $convenio;
+
     /**
      * Nome do arquivo de template a ser usado
      *
@@ -76,7 +82,15 @@ class CaixaComum extends BoletoAbstract
      *
      * @var string
      */
-    protected $layout = 'caixa.phtml';
+	protected $layout = 'caixa.phtml';
+
+	public function setConvenio($convenio) {
+		$this->convenio = $convenio;
+	}
+
+	public function getConvenio() {
+		return $this->convenio;
+	}
 
     /**
      * Define o número da conta
