@@ -72,6 +72,25 @@ class CaixaComum extends BoletoAbstract
 	protected $convenio;
 
     /**
+     * @var array Nome espécie das moedas
+     */
+    protected static $especie = array(
+        self::MOEDA_REAL => 'R$'
+    );
+
+    /**
+     * Espécie do documento, geralmente DM (Duplicata Mercantil)
+     * @var string
+     */
+    protected $especieDoc = 'RC';
+
+    /**
+	 * Define o aceite.
+	 * @var string
+	 */
+	protected $aceite = '';
+
+    /**
      * Nome do arquivo de template a ser usado
      *
      * A Caixa obriga-nos a usar campos não presentes no projeto original, além de alterar cedente
@@ -84,10 +103,22 @@ class CaixaComum extends BoletoAbstract
      */
 	protected $layout = 'caixa.phtml';
 
+    /**
+     * Define o convênio da caixa
+     *
+     * @param string $convenio
+     * @return CaixaComum
+     */
 	public function setConvenio($convenio) {
-		$this->convenio = $convenio;
+        $this->convenio = $convenio;
+        return $this;
 	}
 
+    /**
+     * Retorna o convênio da caixa atual
+     *
+     * @return string Convênio da caixa.
+     */
 	public function getConvenio() {
 		return $this->convenio;
 	}
@@ -134,6 +165,25 @@ class CaixaComum extends BoletoAbstract
      */
     public function getCampoLivre()
     {
-		return $this->gerarNossoNumero() . static::zeroFill($this->getConvenio(), 3) . static::zeroFill($this->getConta(), 8);
+		return $this->gerarNossoNumero() . static::zeroFill($this->getAgencia(), 4) . static::zeroFill($this->getConvenio(), 3) . static::zeroFill($this->getConta(), 8);
 	}
+
+    /**
+     * Retorna o campo Número do documento
+     *
+     * @return int
+     */
+    public function getNumeroDocumento() {
+        return $this->getSequencial();
+    }
+
+    /**
+     * Retorna o campo Agência/Cedente do boleto
+     *
+     * @return string
+     */
+    public function getAgenciaCodigoCedente()
+    {
+        return static::zeroFill($this->getAgencia(), 4) . ' / ' . static::zeroFill($this->getConta(), 8);
+    }
 }
