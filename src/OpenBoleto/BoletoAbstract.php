@@ -1234,69 +1234,6 @@ abstract class BoletoAbstract
         return ob_get_clean();
     }
 
-	/**
-     * Retorna o HTML do boleto gerado em string
-     *
-     * @return string
-     */
-    public function getOutputString()
-    {
-        ob_start();
-
-        extract(array(
-            'linha_digitavel' => $this->getLinhaDigitavel(),
-            'cedente' => $this->getCedente()->getNome(),
-            'cedente_cpf_cnpj' => $this->getCedente()->getDocumento(),
-            'cedente_endereco1' => $this->getCedente()->getEndereco(),
-            'cedente_endereco2' => $this->getCedente()->getCepCidadeUf(),
-            'logo_banco' => $this->getLogoBancoBase64(),
-            'logotipo' => $this->getLogoPath(),
-            'codigo_banco_com_dv' => $this->getCodigoBancoComDv(),
-            'especie' => static::$especie[$this->getMoeda()],
-            'quantidade' => $this->getQuantidade(),
-            'data_vencimento' => $this->getContraApresentacao() ? 'Contra Apresenta&ccedil;&atilde;o' : $this->getDataVencimento()->format('d/m/Y'),
-            'data_processamento'  => $this->getDataProcessamento()->format('d/m/Y'),
-            'data_documento' => $this->getDataDocumento()->format('d/m/Y'),
-            'pagamento_minimo' => static::formataDinheiro($this->getPagamentoMinimo()),
-            'valor_documento' => static::formataDinheiro($this->getValor()),
-            'desconto_abatimento' => static::formataDinheiro($this->getDescontosAbatimentos()),
-            'outras_deducoes' => static::formataDinheiro($this->getOutrasDeducoes()),
-            'mora_multa' => static::formataDinheiro($this->getMoraMulta()),
-            'outros_acrescimos' => static::formataDinheiro($this->getOutrosAcrescimos()),
-            'valor_cobrado' => static::formataDinheiro($this->getValorCobrado()),
-            'valor_unitario' => static::formataDinheiro($this->getValorUnitario()),
-            'sacador_avalista' => $this->getSacadorAvalista() ? $this->getSacadorAvalista()->getNomeDocumento() : null,
-            'sacado' => $this->getSacado()->getNome(),
-            'sacado_documento' => $this->getSacado()->getDocumento(),
-            'sacado_endereco1' => $this->getSacado()->getEndereco(),
-            'sacado_endereco2' => $this->getSacado()->getCepCidadeUf(),
-            'demonstrativo' => (array) $this->getDescricaoDemonstrativo() + array(null, null, null, null, null), // Max: 5 linhas
-            'instrucoes' => (array) $this->getInstrucoes() + array(null, null, null, null, null, null, null, null), // Max: 8 linhas
-            'local_pagamento' => $this->getLocalPagamento(),
-            'numero_documento' => $this->getNumeroDocumento(),
-            'agencia_codigo_cedente'=> $this->getAgenciaCodigoCedente(),
-            'nosso_numero' => $this->getNossoNumero(),
-            'especie_doc' => $this->getEspecieDoc(),
-            'aceite' => $this->getAceite(),
-            'carteira' => $this->getCarteiraNome(),
-            'uso_banco' => $this->getUsoBanco(),
-            'codigo_barras' => $this->getImagemCodigoDeBarras(),
-            'resource_path' => $this->getResourcePath(),
-        ));
-
-        // Override view variables when rendering
-        extract($this->getViewVars());
-
-        // Ignore errors inside the template
-        @include $this->getResourcePath() . '/views/' . $this->getLayout();
-
-		$ret = ob_get_clean();
-
-		ob_end_clean();
-
-		return $ret;
-    }
-
     /**
      * Retorna o campo Agência/Cedente do boleto
      *
