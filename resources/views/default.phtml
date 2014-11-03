@@ -67,30 +67,38 @@
         <table class="table-boleto" cellpadding="0" cellspacing="0" border="0">
             <tbody>
             <tr>
-                <td valign="bottom" colspan="8" class="noborder nopadding">
-                    <div class="logocontainer">
-                        <div class="logobanco">
-                            <img src="<?php echo $logo_banco; ?>" alt="logotipo do banco">
-                        </div>
-                        <div class="codbanco"><?php echo $codigo_banco_com_dv ?></div>
-                    </div>
-                    <div class="linha-digitavel"><?php echo $linha_digitavel ?></div>
-                </td>
+                <td valign="bottom" colspan="8" class="noborder nopadding last-child" style="border:none;">
+					 <table cellpadding="0" cellspacing="0" border="0">
+						<thead>
+							<tr>
+								<th class="logobanco">
+									<img src="<?php echo $logo_banco; ?>" alt="logotipo do banco">
+								</th>
+								<th class="codbanco">
+									 <div class="codbanco"><?php echo $codigo_banco_com_dv ?></div>
+								</th>
+								<th style="text-align:right;">
+									<div class="linha-digitavel"><?php echo $linha_digitavel ?></div>
+								</th>
+							</tr>
+						</thead>
+					</table>
+                 </td>
             </tr>
             <tr>
                 <td colspan="2" width="250">
                     <div class="titulo">Cedente</div>
                     <div class="conteudo"><?php echo $cedente ?></div>
                 </td>
-                <td>
+                <td width="150">
                     <div class="titulo">CPF/CNPJ</div>
                     <div class="conteudo"><?php echo $cedente_cpf_cnpj ?></div>
                 </td>
-                <td width="120">
+                <td width="150">
                     <div class="titulo">Agência/Código do Cedente</div>
                     <div class="conteudo rtl"><?php echo $agencia_codigo_cedente ?></div>
                 </td>
-                <td width="110">
+                <td width="150" class="last-child">
                     <div class="titulo">Vencimento</div>
                     <div class="conteudo rtl"><?php echo $data_vencimento ?></div>
                 </td>
@@ -104,7 +112,7 @@
                     <div class="titulo">Nº documento</div>
                     <div class="conteudo rtl"><?php echo $numero_documento ?></div>
                 </td>
-                <td>
+                <td class="last-child">
                     <div class="titulo">Nosso número</div>
                     <div class="conteudo rtl"><?php echo $nosso_numero ?></div>
                 </td>
@@ -126,7 +134,7 @@
                     <div class="titulo">(-) Descontos / Abatimentos</div>
                     <div class="conteudo rtl"><?php echo $desconto_abatimento ?></div>
                 </td>
-                <td>
+                <td class="last-child">
                     <div class="titulo">(=) Valor Documento</div>
                     <div class="conteudo rtl"><?php echo $valor_documento ?></div>
                 </td>
@@ -144,26 +152,34 @@
                     <div class="titulo">(+) Outros acréscimos</div>
                     <div class="conteudo rtl"><?php echo $outros_acrescimos ?></div>
                 </td>
-                <td>
+                <td class="last-child">
                     <div class="titulo">(=) Valor cobrado</div>
                     <div class="conteudo rtl"><?php echo $valor_cobrado ?></div>
                 </td>
             </tr>
             <tr>
                 <td colspan="4"><div style="margin-top: 10px" class="conteudo"><?php echo $demonstrativo[0] ?></div></td>
-                <td class="noleftborder"><div class="titulo">Autenticação mecânica</div></td>
-            </tr>
-            <tr>
-                <td colspan="5" class="notopborder"><div class="conteudo"><?php echo $demonstrativo[1] ?></div></td>
-            </tr>
-            <tr>
-                <td colspan="5" class="notopborder"><div class="conteudo"><?php echo $demonstrativo[2] ?></div></td>
-            </tr>
-            <tr>
-                <td colspan="5" class="notopborder"><div class="conteudo"><?php echo $demonstrativo[3] ?></div></td>
-            </tr>
-            <tr>
-                <td colspan="5" class="notopborder bottomborder"><div style="margin-bottom: 10px;" class="conteudo"><?php echo $demonstrativo[4] ?></div></td>
+                <td class="last-child" ><div class="titulo">Autenticação mecânica</div></td>
+			</tr>
+			<tr>
+				<td colspan="5" style="padding:0">
+					<table class="table-footer" cellspacing="0" cellpadding="0" border="0" width="665">
+						<thead>
+							<tr>
+								<th class="last-child"><div class="conteudo"><?php echo "&nbsp;" . $demonstrativo[1] ?></div></th>
+							</tr>
+							<tr>
+								<th class="last-child"><div class="conteudo"><?php echo "&nbsp;" . $demonstrativo[2] ?></div></th>
+							</tr>
+							<tr>
+								<th class="last-child"><div class="conteudo"><?php echo "&nbsp;" . $demonstrativo[3] ?></div></th>
+							</tr>
+							<tr>
+								<th class="last-child bottomborder"><div style="margin-bottom: 10px;" class="conteudo"><?php echo "&nbsp;" . $demonstrativo[4] ?></div></th>
+							</tr>
+						</thead>
+					</table>
+				</td>
             </tr>
             </tbody>
         </table>
