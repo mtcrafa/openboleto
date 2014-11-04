@@ -1362,13 +1362,13 @@ abstract class BoletoAbstract
         }
 
         // Guarda inicial
-        $retorno = '<div class="barcode">' .
-        '<div class="black thin"></div>' .
-        '<div class="white thin"></div>' .
-        '<div class="black thin"></div>' .
-        '<div class="white thin"></div>';
-
-        if (strlen($codigo) % 2 != 0) {
+		$retorno = '<table cellspacing="0" cellpadding="0" height="50">' .
+		'<tr>' .
+			'<td style="border-left: 1px solid #000000;padding:0;height:50px;border-top:none;"></td>'.
+			'<td style="border-left: 1px solid #ffffff;padding:0;height:50px;border-top:none;"></td>'.
+			'<td style="border-left: 1px solid #000000;padding:0;height:50px;border-top:none;"></td>'.
+			'<td style="border-left: 1px solid #ffffff;padding:0;height:50px;border-top:none;"></td>';
+               if (strlen($codigo) % 2 != 0) {
             $codigo = "0" . $codigo;
         }
 
@@ -1382,28 +1382,30 @@ abstract class BoletoAbstract
             for ($i = 1; $i < 11; $i += 2) {
 
                 if (substr($f, ($i - 1), 1) == "0") {
-                    $f1 = 'thin';
+                    $f1 = 'border-left: 1px solid #000000;padding:0;height:50px;border-top:none;';
                 } else {
-                    $f1 = 'large';
+                    $f1 = 'border-left: 3px solid #000000;padding:0;height:50px;border-top:none;';
                 }
 
-                $retorno .= "<div class='black {$f1}'></div>";
+                $retorno .= "<td style='{$f1}'></td>";//black
 
                 if (substr($f, $i, 1) == "0") {
-                    $f2 = 'thin';
+                    $f2 = 'border-left: 1px solid #ffffff;padding:0;height:50px;border-top:none;';
                 } else {
-                    $f2 = 'large';
+                    $f2 = 'border-left: 3px solid #ffffff;padding:0;height:50px;border-top:none;';
                 }
 
-                $retorno .= "<div class='white {$f2}'></div>";
+                $retorno .= "<td style='{$f2}'></td>";//white
             }
         }
 
         // Final
-        return $retorno . '<div class="black large"></div>' .
-        '<div class="white thin"></div>' .
-        '<div class="black thin"></div>' .
-        '</div>';
+		return $retorno .
+			'<td style="border-left: 3px solid #000000;padding:0;height:50px;border-top:none;"></td>'.
+			'<td style="border-left: 1px solid #ffffff;padding:0;height:50px;border-top:none;"></td>'.
+			'<td style="border-left: 1px solid #000000;padding:0;height:50px;border-top:none;"></td>'.
+		'</tr>'.
+        '</table>';
     }
 
     /**
