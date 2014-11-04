@@ -57,7 +57,7 @@ class BancoDoBrasil extends BoletoAbstract
      * Linha de local de pagamento
      * @var string
      */
-    protected $localPagamento = 'Pagável em qualquer Banco até o vencimento';
+    protected $localPagamento = 'ATE O VENCIMENTO PAGUE PREFERENCIALMENTE NO BANCODOBRASIL<br>APOS O VENCIMENTO PAGUE SOMENTE NO BANCODOBRASIL';
 
     /**
      * Define as carteiras disponíveis para este banco
@@ -70,6 +70,25 @@ class BancoDoBrasil extends BoletoAbstract
      * @var string
      */
     protected $convenio;
+
+    /**
+     * Espécie do documento
+     * @var string
+     */
+    protected $especieDoc = 'RC';
+
+    /**
+     * Campo de aceite
+     * @var string
+     */
+    protected $aceite = '';
+
+    /**
+     * @var array Nome espécie das moedas
+     */
+    protected static $especie = array(
+        self::MOEDA_REAL => 'R$'
+    );
 
     /**
      * Define o número do convênio. Sempre use string pois a quantidade de caracteres é validada.
@@ -176,5 +195,68 @@ class BancoDoBrasil extends BoletoAbstract
         }
 
         throw new Exception('O código do convênio precisa ter 4, 6 ou 7 dígitos!');
+    }
+
+    /**
+     * Retorna o campo Número do documento
+     *
+     * @return int
+     */
+    public function getNumeroDocumento()
+    {
+        return $this->getSequencial();
+    }
+
+    /**
+     * Retorna o dígito da agência
+     *
+     * @return string|int
+     */
+    function getAgenciaDv()
+    {
+        $Resto = $this->modulo11( $this->getAgencia(), 7 )['resto'];
+        $Digito = 11 - $Resto;
+        if ( $Resto == 1 )
+        {
+            $Digito = 'X';
+        }
+        else if ( $Resto == 0 )
+        {
+            $Digito = 0;
+        }
+        return ( $Digito );
+    }
+
+    /**
+     * Retorna o dígito da conta
+     *
+     * @return string|int
+     */
+    function getContaDv()
+    {
+        $Resto = $this->modulo11( $this->getConta(), 7 )['resto'];
+        $Digito = 11 - $Resto;
+        if ( $Resto == 1 )
+        {
+            $Digito = 'X';
+        }
+        else if ( $Resto == 0 )
+        {
+            $Digito = 0;
+        }
+        return ( $Digito );
+    }
+
+
+    /**
+     * Retorna o campo Agência/Cedente do boleto
+     *
+     * @return string
+     */
+    public function getAgenciaCodigoCedente()
+    {
+        $agencia = $this->getAgenciaDv() !== null ? $this->getAgencia() . '-' . $this->getAgenciaDv() : $this->getAgencia();
+        $conta = $this->getContaDv() !== null ? static::zeroFill($this->getConta(), 8) . '-' . $this->getContaDv() : static::zeroFill($this->getConta(), 8);
+        return $agencia . ' / ' . $conta;
     }
 }
