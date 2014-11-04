@@ -49,7 +49,7 @@ abstract class BoletoAbstract
      * @var array Nome espécie das moedas
      */
     protected static $especie = array(
-        self::MOEDA_REAL => 'REAL'
+        self::MOEDA_REAL => 'R$'
     );
 
     /**
@@ -146,13 +146,13 @@ abstract class BoletoAbstract
      * Campo de aceite
      * @var string
      */
-    protected $aceite = 'N';
+    protected $aceite = '';
 
     /**
      * Espécie do documento, geralmente DM (Duplicata Mercantil)
      * @var string
      */
-    protected $especieDoc;
+    protected $especieDoc = 'RC';
 
     /**
      * Número do documento
