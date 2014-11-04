@@ -72,25 +72,6 @@ class BancoDoBrasil extends BoletoAbstract
     protected $convenio;
 
     /**
-     * Espécie do documento
-     * @var string
-     */
-    protected $especieDoc = 'RC';
-
-    /**
-     * Campo de aceite
-     * @var string
-     */
-    protected $aceite = '';
-
-    /**
-     * @var array Nome espécie das moedas
-     */
-    protected static $especie = array(
-        self::MOEDA_REAL => 'R$'
-    );
-
-    /**
      * Define o número do convênio. Sempre use string pois a quantidade de caracteres é validada.
      *
      * @param string $convenio
