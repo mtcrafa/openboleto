@@ -131,7 +131,6 @@ class Real extends BoletoAbstract
      * @return int
      */
 	public function getNumeroDocumento() {
-		$this->getSequencial();
+		return $this->getSequencial();
 	}
-
 }
