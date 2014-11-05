@@ -126,11 +126,23 @@ class Banrisul extends BoletoAbstract
 		return $this->_calcNC(
 			'21' .
 			static::zeroFill($this->getAgencia(), 4) .
-			static::zeroFill($this->getConta() . $this->getContaDV(), 7) .
+			static::zeroFill($this->getConta(), 7) .
 			static::zeroFill($this->getSequencial(), 8) .
 			'40'
 		);
 	}
+
+	/**
+     * Define o número da conta
+     *
+     * @param int $conta
+     * @return BoletoAbstract
+     */
+    public function setConta($conta)
+    {
+        $this->conta = substr($conta, 0, 7);
+        return $this;
+    }
 
 	protected function _calcMod10 ($n) {
 		$t = strlen ($n) - 1;
