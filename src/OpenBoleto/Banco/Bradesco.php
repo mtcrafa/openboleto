@@ -76,6 +76,12 @@ class Bradesco extends BoletoAbstract
      */
     protected $cip = '000';
 
+	/**
+     * Linha de local de pagamento
+     * @var string
+     */
+    protected $localPagamento = 'ATE O VENCIMENTO PAGUE PREFERENCIALMENTE NO BRADESCO<br>APOS O VENCIMENTO PAGUE SOMENTE NO BRADESCO';
+
     /**
      * Gera o Nosso Número.
      *
