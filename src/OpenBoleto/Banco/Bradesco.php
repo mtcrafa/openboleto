@@ -134,4 +134,23 @@ class Bradesco extends BoletoAbstract
             'mostra_cip' => true,
         );
     }
+
+	/**
+     * Retorna o dígito verificador da conta
+     *
+     * @return int
+     */
+	public function getContaDv() {
+		$Resto = $this->modulo11($this->getConta(), 7)['resto'];
+		$Digito = 11 - $Resto;
+		if ( $Resto == 1 )
+		{
+			$Digito = 'P';
+		}
+		else if ( $Resto == 0 )
+		{
+			$Digito = 0;
+		}
+		return ( $Digito );
+	}
 }
