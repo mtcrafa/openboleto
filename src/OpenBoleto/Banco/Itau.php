@@ -178,4 +178,16 @@ class Itau extends BoletoAbstract
             'carteira' => null, // Campo não utilizado pelo Itaú
         );
     }
+
+	/**
+     * Define o número da conta
+     *
+     * @param int $conta
+     * @return BoletoAbstract
+     */
+    public function setConta($conta)
+    {
+        $this->conta = substr($conta, 0, 5);
+        return $this;
+    }
 }
