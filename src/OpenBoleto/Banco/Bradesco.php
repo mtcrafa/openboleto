@@ -172,15 +172,4 @@ class Bradesco extends BoletoAbstract
 		}
 		return ( $Digito );
 	}
-
-	/**
-     * Retorna o HTML do boleto gerado
-     *
-     * @return string
-     */
-    public function getOutput()
-	{
-
-		parent::getOutput();
-	}
 }
