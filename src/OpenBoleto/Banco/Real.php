@@ -63,13 +63,6 @@ class Real extends BoletoAbstract
 	protected $carteiras = array('057');
 
 	/**
-     * @var array Nome espécie das moedas
-     */
-    protected static $especie = array(
-        self::MOEDA_REAL => 'R$'
-    );
-
-	/**
 	 * Define o número do convênio
 	 * @var string
 	 */

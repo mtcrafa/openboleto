@@ -72,25 +72,6 @@ class CaixaComum extends BoletoAbstract
 	protected $convenio;
 
     /**
-     * @var array Nome espécie das moedas
-     */
-    protected static $especie = array(
-        self::MOEDA_REAL => 'R$'
-    );
-
-    /**
-     * Espécie do documento, geralmente DM (Duplicata Mercantil)
-     * @var string
-     */
-    protected $especieDoc = 'RC';
-
-    /**
-	 * Define o aceite.
-	 * @var string
-	 */
-	protected $aceite = '';
-
-    /**
      * Nome do arquivo de template a ser usado
      *
      * A Caixa obriga-nos a usar campos não presentes no projeto original, além de alterar cedente

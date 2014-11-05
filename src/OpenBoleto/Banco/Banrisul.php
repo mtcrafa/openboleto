@@ -57,12 +57,6 @@ class Banrisul extends BoletoAbstract
 	protected $localPagamento = 'ATE O VENCIMENTO PAGUE PREFERENCIALMENTE NO BANRISUL<BR>APOS VENCIMENTO PAGUE SOMENTE NO BANRISUL';
 
 	/**
-	 * Espécie do documento
-	 * @var string
-	 */
-	protected $especieDoc = 'RC';
-
-	/**
 	 * Define as carteiras disponíveis para este banco
 	 * @var array
 	 */
