@@ -83,7 +83,7 @@ class Bradesco extends BoletoAbstract
      */
     protected function gerarNossoNumero()
     {
-        return $this->getSequencial();
+        return static::zeroFill($this->getCarteira(), 2) . '/00/' . static::zeroFill($this->getSequencial(), 9) . '-' . $this->getNossoNumeroDv();
     }
 
     /**
@@ -95,7 +95,7 @@ class Bradesco extends BoletoAbstract
     {
         return static::zeroFill($this->getAgencia(), 4) .
             static::zeroFill($this->getCarteira(), 2) .
-            static::zeroFill($this->getNossoNumero(), 11) .
+            static::zeroFill($this->getSequencial(), 11) .
             static::zeroFill($this->getConta(), 7) .
             '0';
     }
@@ -136,6 +136,25 @@ class Bradesco extends BoletoAbstract
     }
 
 	/**
+     * Retorna o dígito verificador do nosso número
+     *
+     * @return int
+     */
+	public function getNossoNumeroDv() {
+		$Resto = $this->modulo11(static::zeroFill($this->getCarteira(), 2) . '00' . static::zeroFill($this->getSequencial(), 9), 7)['resto'];
+		$Digito = 11 - $Resto;
+		if ( $Resto == 1 )
+		{
+			$Digito = 'P';
+		}
+		else if ( $Resto == 0 )
+		{
+			$Digito = 0;
+		}
+		return ( $Digito );
+	}
+
+	/**
      * Retorna o dígito verificador da conta
      *
      * @return int
@@ -152,5 +171,16 @@ class Bradesco extends BoletoAbstract
 			$Digito = 0;
 		}
 		return ( $Digito );
+	}
+
+	/**
+     * Retorna o HTML do boleto gerado
+     *
+     * @return string
+     */
+    public function getOutput()
+	{
+
+		parent::getOutput();
 	}
 }
