@@ -112,7 +112,7 @@ class Hsbc extends BoletoAbstract
 	 */
 	protected function gerarNossoNumero()
 	{
-		return $this->getSequencial();
+		return static::zeroFill($this->getSequencial(), 13);
 	}
 
 	/**
@@ -141,4 +141,14 @@ class Hsbc extends BoletoAbstract
 
 		return $dia.$ano;
 	}
+
+	/**
+     * Retorna o campo Agência/Cedente do boleto
+     *
+     * @return string
+     */
+    public function getAgenciaCodigoCedente()
+    {
+        return $this->getConta();
+    }
 }
