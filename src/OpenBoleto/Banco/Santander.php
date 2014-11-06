@@ -150,4 +150,14 @@ class Santander extends BoletoAbstract
 		}
 		return $soma;
 	}
+
+	/**
+     * Retorna o dígito verificador da conta
+     *
+     * @return int
+     */
+    public function getContaDv()
+    {
+        return null;
+    }
 }
