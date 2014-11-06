@@ -57,7 +57,7 @@ class Santander extends BoletoAbstract
 	 * Linha de local de pagamento
 	 * @var string
 	 */
-	protected $localPagamento = 'Pagar preferencialmente no Banco Santander';
+	protected $localPagamento = 'ATE O VENCIMENTO PAGUE PREFERENCIALMENTE NO SANTANDER<BR>APOS O VENCIMENTO PAGUE SOMENTE NO SANTANDER';
 
 	/**
 	 * Define as carteiras disponíveis para este banco
