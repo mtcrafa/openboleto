@@ -159,5 +159,16 @@ class Santander extends BoletoAbstract
     public function getContaDv()
     {
         return null;
+	}
+
+	/**
+     * Retorna o campo Agência/Cedente do boleto
+     *
+     * @return string
+     */
+    public function getAgenciaCodigoCedente()
+    {
+        $conta = $this->getContaDv() !== null ? $this->getConta() . '-' . $this->getContaDv() : $this->getConta();
+        return  $this->getAgencia() . ' / ' . $conta;
     }
 }
