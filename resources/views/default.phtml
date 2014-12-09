@@ -51,9 +51,12 @@
 
 		<table class="table-logo" cellpadding="0" cellspacing="0" border="0" style="padding-bottom: 5px;">
             <tr>
-                <td width="400">
-                    <?php //var_dump($logotipo); exit; ?>
-                    <img src="<?php echo $logotipo;?>" >
+                <td valign="bottom" width="100%">
+                     <?php if (!empty($logotipo)): ?>
+                         <img src="<?php echo $logotipo;?>" >
+                     <?php else : ?>
+                         <img src="<?php echo $logo_banco;?>" >
+                     <?php endif; ?>
                 </td>
                 <td valign="bottom">
                     <table class="mini-table" cellpadding="0" cellspacing="0" border="0">
@@ -82,6 +85,7 @@
                 </td>
             </tr>
         </table>
+
 
         <table class="table-boleto" cellpadding="0" cellspacing="0" border="0">
             <tbody>
