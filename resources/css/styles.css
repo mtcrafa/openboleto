@@ -36,23 +36,27 @@ body{
     border-top: 1px solid #000;
 }
 
+td {
+    vertical-align: top;
+}
+
 td.last-child{
-	border-right: 1px solid #000;
+        border-right: 1px solid #000;
 }
 
 th.last-child{
-	border-right: 1px solid #000;
+        border-right: 1px solid #000;
 }
 
 .titulo {
-    color: #000033;
+    color: #000000;
 }
 
 .linha-pontilhada {
-    color: #000033;
+    color: #000000;
     font: 9px Arial;
     width: 100%;
-    border-bottom: 1px dashed #000;
+    border-bottom: 2px dotted #000;
     text-align: right;
     margin-bottom: 10px;
 }
