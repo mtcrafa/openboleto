@@ -34,7 +34,7 @@
 
     <div style="width: 666px">
         <div class="noprint info">
-            <h2>Instruções de Impressão e pagamento deste bloqueto:</h2>
+            <h3>Instruções de Impressão e pagamento deste bloqueto:</h3>
             <ul>
                 <li>Utilize uma impressora tipo jato de tinta (ink jet) ou laser.</li>
                 <li>Configure a impressora para utilizar qualidade de impressão Normal. Não utilize as opções Rascunho ou Econômico.</li>
@@ -49,14 +49,14 @@
             <div class="linha-pontilhada" style="margin-bottom: 20px;">Recibo do sacado</div>
         </div>
 
-		<table class="table-logo" cellpadding="0" cellspacing="0" border="0" style="padding-bottom: 5px;">
+	<table class="table-logo" cellpadding="0" cellspacing="0" border="0" style="padding-bottom: 5px;">
             <tr>
                 <td valign="bottom" width="100%">
                      <?php if (!empty($logotipo)): ?>
                          <img src="<?php echo $logotipo;?>" >
-                     <?php else : ?>
-                         <img src="<?php echo $logo_banco;?>" >
-                     <?php endif; ?>
+		     <?php else : ?>
+			 <img src="<?php echo $logo_banco;?>" >
+		     <?php endif; ?>
                 </td>
                 <td valign="bottom">
                     <table class="mini-table" cellpadding="0" cellspacing="0" border="0">
@@ -86,37 +86,35 @@
             </tr>
         </table>
 
-
-        <table class="table-boleto" cellpadding="0" cellspacing="0" border="0">
+        <table class="table-boleto recibo-boleto" cellpadding="0" cellspacing="0" border="0">
             <tbody>
             <tr>
-                <td width="160">
-                    <div class="titulo">Agência/Código do Cedente</div>
-                    <div class="conteudo rtl"><?php echo $agencia_codigo_cedente ?></div>
+                <td width="180">
+                    <div class="titulo title-featured">Agência/Código do Cedente</div>
+                    <table width="180" border="0"><tr><td class="conteudo" style="border:none;"><?php echo $agencia_codigo_cedente ?></td></tr></table>
+                </td>
+                <td width="150">
+                   <div class="titulo title-featured">Nosso Número</div>
+                   <table width="150" border="0"><tr><td class="conteudo" style="border:none;"><?php echo $nosso_numero ?></td></tr></table>
                 </td>
                 <td>
-                   <div class="titulo">Nosso número</div>
-                   <div class="conteudo rtl"><?php echo $nosso_numero ?></div>
-                </td>
-                <td>
-                   <div class="titulo">Número do Documento</div>
-                   <div class="conteudo rtl"><?php echo $numero_documento ?></div>
+                   <div width="150" class="titulo title-featured">Número do Documento</div>
+                   <table width="150" border="0"><tr><td class="conteudo" style="border:none;"><?php echo $numero_documento ?></td></tr></table>
                 </td>
                 <td width="150" class="last-child">
-                    <div class="titulo">Data do documento</div>
-                    <div class="conteudo rtl"><?php echo $data_documento ?></div>
+                    <div class="titulo title-featured">Data do documento</div>
+		    		<table width="150" border="0"><tr><td class="conteudo" style="border:none;"><?php echo $data_documento ?></td></tr></table>
                 </td>
             </tr>
             <tr>
-                <td colspan="4" class="last-child">
-                    <div class="titulo">Sacado</div>
+                <td colspan="4" class="last-child final-field">
+                    <div class="titulo title-featured">Sacado</div>
                     <div class="conteudo rtl"><?php echo $sacado ?></div>
                 </td>
             </tr>
             <tr>
-                <td colspan="4" class="last-child" style="border-bottom: 1px solid #000000;">
-                    <div class="conteudo"></div>
-                    <div class="titulo">Demonstrativo</div>
+                <td colspan="4" class="last-child final-field" style="border-bottom: 1px solid #000000;">
+                    <div class="titulo title-featured">Demonstrativo</div>
                     <div class="conteudo rtl"><?php echo $demonstrativo[0]; ?>
                 </td>
             </tr>
@@ -128,8 +126,7 @@
             </tbody>
         </table>
         <br>
-        <div class="linha-pontilhada">Corte na linha pontilhada</div>
-        <br>
+        <div class="linha-pontilhada">&nbsp;</div>
 
         <!-- Ficha de compensação -->
         <?php include('partials/ficha-de-compensacao.phtml') ?>
