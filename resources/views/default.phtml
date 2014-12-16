@@ -52,13 +52,20 @@
 	<table class="table-logo" cellpadding="0" cellspacing="0" border="0" style="padding-bottom: 5px;">
             <tr>
                 <td valign="bottom" width="100%">
-                     <?php if (!empty($logotipo)): ?>
-                         <img src="<?php echo $logotipo;?>" >
-		     <?php else : ?>
-			 <img src="<?php echo $logo_banco;?>" >
-		     <?php endif; ?>
-                </td>
-                <td valign="bottom">
+                    <?php
+                    if (!empty($logotipo)):
+                        $image = getimagesize($logotipo);
+                        if ($image[0] > 175 && $image[1] > 75) :
+                            echo '<img src="'. $logotipo .'" width="175" height="75">';
+                        else :
+                            echo '<img src="'. $logotipo .'">';
+                        endif;
+                     else :
+                        echo '<img src="'. $logo_banco .'">';
+                     endif;
+                    ?>
+				</td>
+				<td valign="bottom">
                     <table class="mini-table" cellpadding="0" cellspacing="0" border="0">
                         <tr>
                             <td colspan="2" class="recibo-sacado">
