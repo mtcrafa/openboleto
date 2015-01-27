@@ -106,7 +106,9 @@
                 <div class="conteudo"><?php echo $cip ?></div>
             </td>
         <?php endif ?>
-        <td <?php if($esconde_uso_banco) : ?> colspan="3" <?php endif; ?>>
+		<?php if($esconde_uso_banco) : ?>
+			<td colspan="3">
+		<?php endif;?>
 	</td>
         <td width="75">
             <div class="titulo">Carteira</div>
