@@ -92,8 +92,10 @@
     </tr>
     <tr>
 	<!-- Não foi retirado esse trexo de código, tão pouco testado -->
-        <?php if (!$esconde_uso_banco) : ?>
-            <td<?php if (!$mostra_cip) : ?> colspan="2"<?php endif ?>>
+        <?php if (! isset($esconde_uso_banco)) : ?>
+        	<?php if (!$mostra_cip) : ?>
+				<td colspan="2">
+			<?php endif ?>
                 <div class="titulo">Uso do banco</div>
                 <div class="conteudo"><?php echo $uso_banco ?></div>
             </td>
@@ -106,11 +108,11 @@
                 <div class="conteudo"><?php echo $cip ?></div>
             </td>
         <?php endif ?>
-        <td <?php if($esconde_uso_banco) : ?> colspan="3" <?php endif; ?>>
-
-        <td colspan="2">
-	    <div class="titulo">Uso do Banco</div>
-	</td>
+		<?php if(isset($esconde_uso_banco)) : ?>
+			<td colspan="2">
+				<div class="titulo">Uso do banco</div>
+			</td>
+		<?php endif;?>
         <td width="75">
             <div class="titulo">Carteira</div>
             <table width="75" border="0"><tr><td class="conteudo" style="border:none;"><?php echo $carteira ?></td></tr></table>
