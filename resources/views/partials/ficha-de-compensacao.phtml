@@ -43,14 +43,14 @@
         </td>
     </tr>
     <tr>
-        <td colspan="7" width="450">
+        <td colspan="7" width="400">
             <div class="titulo">Local de Pagamento</div>
             <div class="conteudo"><?php echo $local_pagamento ?></div>
             <div class="conteudo"></div>
         </td>
         <td width="180" class="last-child">
             <div class="titulo">Vencimento</div>
-	   		<table width="180" border="0"><tr><td class="featured" style="text-align:right;border:none;"><?php echo $data_vencimento ?></td></tr></table>
+	   		<table width="140" border="0"><tr><td class="featured" style="text-align:right;border:none;"><?php echo $data_vencimento ?></td></tr></table>
         </td>
     </tr>
     <tr>
@@ -60,34 +60,34 @@
         </td>
         <td width="180" class="last-child">
             <div class="titulo">Agência/Código cedente</div>
-	   		<table width="180" border="0"><tr><td style="text-align:right;border:none;"><?php echo $agencia_codigo_cedente ?></td></tr></table>
+	   		<table width="140" border="0"><tr><td style="text-align:right;border:none;"><?php echo $agencia_codigo_cedente ?></td></tr></table>
         </td>
     </tr>
     <tr>
-        <td width="150" colspan="2">
+        <td width="110" colspan="2">
             <div class="titulo">Data do documento</div>
-            <table width="150" border="0"><tr><td class="conteudo" style="border:none;"><?php echo $data_documento ?></td></tr></table>
+            <table width="110" border="0"><tr><td class="conteudo" style="border:none;"><?php echo $data_documento ?></td></tr></table>
         </td>
-        <td width="150" colspan="2">
+        <td width="140" colspan="2">
             <div class="titulo">Nº documento</div>
-            <table width="150" border="0"><tr><td class="conteudo" style="border:none;"><?php echo $numero_documento ?></td></tr></table>
+            <table width="130" border="0"><tr><td class="conteudo" style="border:none;"><?php echo $numero_documento ?></td></tr></table>
         </td>
-        <td width="80">
+        <td width="65">
             <div class="titulo">Espécie doc.</div>
-	    	<table width="80" border="0"><tr><td class="conteudo" style="border:none;"><?php echo $especie_doc ?></td></tr></table>
+	    	<table width="65" border="0"><tr><td class="conteudo" style="border:none;"><?php echo $especie_doc ?></td></tr></table>
         </td>
-        <td width="70">
+        <td width="55">
             <div class="titulo">Aceite</div>
-	    	<table width="60" border="0"><tr><td class="conteudo" style="border:none;"><?php echo $aceite ?></td></tr></table>
+	    	<!-- <table width="55" border="0"><tr><td class="conteudo" style="border:none;"><?php echo $aceite ?></td></tr></table> -->
             <div class="conteudo"><?php echo $aceite ?></div>
         </td>
-        <td width="130">
+        <td width="110">
             <div class="titulo">Data processamento</div>
-            <table width="130" border="0"><tr><td class="conteudo" style="border:none;"><?php echo $data_processamento ?></td></tr></table>
+            <table width="110" border="0"><tr><td class="conteudo" style="border:none;"><?php echo $data_processamento ?></td></tr></table>
         </td>
-        <td width="150" class="last-child">
+        <td width="140" class="last-child">
             <div class="titulo">Nosso número</div>
-	    	<table width="150" border="0"><tr><td style="text-align:right;border:none;"><?php echo $nosso_numero ?></td></tr></table>
+	    	<table width="140" border="0"><tr><td style="text-align:right;border:none;"><?php echo $nosso_numero ?></td></tr></table>
         </td>
     </tr>
     <tr>
@@ -103,7 +103,7 @@
 
         <?php if ($mostra_cip) : ?>
             <!-- Campo exclusivo do Bradesco -->
-            <td width="20">
+            <td width="20" colspan="2">
                 <div class="titulo">CIP</div>
                 <div class="conteudo"><?php echo $cip ?></div>
             </td>
@@ -113,25 +113,25 @@
 				<div class="titulo">Uso do banco</div>
 			</td>
 		<?php endif;?>
-        <td width="75">
+        <td width="65">
             <div class="titulo">Carteira</div>
-            <table width="75" border="0"><tr><td class="conteudo" style="border:none;"><?php echo $carteira ?></td></tr></table>
+            <table width="65" border="0"><tr><td class="conteudo" style="border:none;"><?php echo $carteira ?></td></tr></table>
         </td>
-        <td width="75">
+        <td width="65">
             <div class="titulo">Espécie</div>
-	    	<table width="75" border="0"><tr><td class="conteudo" style="border:none;"><?php echo $especie ?></td></tr></table>
+	    	<table width="65" border="0"><tr><td class="conteudo" style="border:none;"><?php echo $especie ?></td></tr></table>
         </td>
-        <td width="120" colspan="2">
+        <td width="135" colspan="2">
             <div class="titulo">Quantidade</div>
-            <table width="120" border="0"><tr><td class="conteudo" style="border:none;"><?php echo $quantidade ?></td></tr></table>
+            <table width="135" border="0"><tr><td class="conteudo" style="border:none;"><?php echo $quantidade ?></td></tr></table>
         </td>
-        <td width="90">
+        <td width="110">
             <div class="titulo">(X) Valor</div>
-	    	<table width="90" border="0"><tr><td class="conteudo" style="border:none;"><?php echo $valor_unitario ?></td></tr></table>
+	    	<table width="110" border="0"><tr><td class="conteudo" style="border:none;"><?php echo $valor_unitario ?></td></tr></table>
         </td>
         <td width="180" class="last-child final-field">
             <div class="titulo">(=) Valor do Documento</div>
-	    	<table width="180" border="0"><tr><td class="featured" style="text-align:right;border:none;"><?php echo $valor_documento ?></td></tr></table>
+	    	<table width="140" border="0"><tr><td class="featured" style="text-align:right;border:none;"><?php echo $valor_documento ?></td></tr></table>
         </td>
     </tr>
     <tr>
@@ -140,7 +140,7 @@
         </td>
         <td width="180" class="last-child final-field">
             <div class="titulo">(-) Descontos / Abatimentos</div>
-	    	<table width="180" border="0"><tr><td style="text-align:right;border:none;"><?php echo $desconto_abatimento ?></td></tr></table>
+	    	<table width="140" border="0"><tr><td style="text-align:right;border:none;"><?php echo $desconto_abatimento ?></td></tr></table>
         </td>
     </tr>
     <tr>
@@ -150,7 +150,7 @@
         </td>
         <td width="180" class="last-child final-field">
             <div class="titulo">(-) Outras deduções</div>
-	   		<table width="180" border="0"><tr><td style="text-align:right;border:none;"><?php echo $outras_deducoes ?></td></tr></table>
+	   		<table width="140" border="0"><tr><td style="text-align:right;border:none;"><?php echo $outras_deducoes ?></td></tr></table>
         </td>
     </tr>
     <tr>
@@ -160,7 +160,7 @@
         </td>
         <td width="180" class="last-child final-field">
             <div class="titulo">(+) Mora / Multa</div>
-	    	<table width="180" border="0"><tr><td style="text-align:right;border:none;"><?php echo $mora_multa ?></td></tr></table>
+	    	<table width="140" border="0"><tr><td style="text-align:right;border:none;"><?php echo $mora_multa ?></td></tr></table>
         </td>
     </tr>
     <tr>
@@ -170,7 +170,7 @@
         </td>
         <td width="180" class="last-child final-field">
             <div class="titulo">(+) Outros acréscimos</div>
-	    	<table width="180" border="0"><tr><td style="text-align:right;border:none;"><?php echo $outros_acrescimos ?></td></tr></table>
+	    	<table width="140" border="0"><tr><td style="text-align:right;border:none;"><?php echo $outros_acrescimos ?></td></tr></table>
         </td>
     </tr>
     <tr>
@@ -180,7 +180,7 @@
         </td>
         <td width="180" class="last-child final-field">
             <div class="titulo">(=) Valor cobrado</div>
-	    	<table width="180" border="0"><tr><td style="text-align:right;border:none;"><?php echo $valor_cobrado ?></td></tr></table>
+	    	<table width="140" border="0"><tr><td style="text-align:right;border:none;"><?php echo $valor_cobrado ?></td></tr></table>
         </td>
     </tr>
     <tr>

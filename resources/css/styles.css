@@ -56,7 +56,7 @@ td.last-child{
 }
 
 .conteudo {
-    text-align: center;
+    text-align: left;
 }
 
 .sacador {
@@ -97,17 +97,17 @@ th.codbanco {
 }
 
 .codbanco {
-    font-size: 25px;
+    font-size: 12px;
     font-weight: bold;
     border-left: 2px solid #000;
     border-right: 2px solid #000;
     margin-left: 25px;
     padding: 1px 5px;
-    width: 55px;
+    width: 45px;
 }
 
 .linha-digitavel {
-    font-size:16px;
+    font-size:15px;
     display: inline-block;
     width: 100%;
 }
@@ -159,6 +159,7 @@ th.codbanco {
     border-top: 1px solid #000000;
     border-left: 1px solid #000000;
     border-right: 1px solid #000000;
+    padding: 0 20px;
 }
 
 .bottom-value {
@@ -170,6 +171,7 @@ th.codbanco {
 .top-due-date {
     border-top: 1px solid #000000;
     border-right: 1px solid #000000;
+    padding: 0 20px;
 }
 
 .bottom-due-date {
@@ -187,8 +189,12 @@ th.codbanco {
     display: table;
 }
 
-.title-featured {
+.title-featured, .titulo {
     font-weight: bold;
+}
+
+.titulo {
+    font-size: 10px;
 }
 
 .recibo-boleto {

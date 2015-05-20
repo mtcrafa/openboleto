@@ -68,6 +68,12 @@ class Hsbc extends BoletoAbstract
 	 */
     protected $convenio;
 
+  /**
+	 * Define o número do convênio
+	 * @var string
+	 */
+    protected $codigo_cedente;
+
     /**
      * Define o código da carteira (Com ou sem registro)
      *
@@ -79,6 +85,27 @@ class Hsbc extends BoletoAbstract
     {
         $this->carteira = $carteira;
         return $this;
+    }
+
+    /**
+     * Define o código do cedente
+     *
+     * @param string $carteira
+     * @return BoletoAbstract
+     * @throws Exception
+     */
+    public function setCodigoCedente($codigo_cedente)
+    {
+        $this->codigo_cedente = $codigo_cedente;
+        return $this;
+    }
+
+     /**
+     * Retorna o código do cedente
+     */
+    public function getCodigoCedente()
+    {
+        return $this->codigo_cedente;
     }
 
 
@@ -112,7 +139,30 @@ class Hsbc extends BoletoAbstract
 	 */
 	protected function gerarNossoNumero()
 	{
-		return static::zeroFill($this->getSequencial(), 13);
+		$ndoc = $this->getSequencial().$this->modulo11invertido($this->getSequencial()).'4';
+		$venc = 250515;
+		$res = $ndoc + $this->getCodigoCedente() + $venc;
+		$ndoc = $ndoc . $this->modulo11invertido($res);
+
+		return static::zeroFill($ndoc, 13);
+	}
+
+	protected function modulo11invertido($num)
+	{
+    $ftini = 2;
+		$ftfim = 9;
+		$fator = $ftfim;
+    $soma = 0;
+	
+    for ($i = strlen($num); $i > 0; $i--) {
+			$soma += substr($num,$i-1,1) * $fator;
+			if(--$fator < $ftini) $fator = $ftfim;
+    }
+	
+    $digito = $soma % 11;
+		if($digito > 9) $digito = 0;
+	
+		return $digito;
 	}
 
 	/**
