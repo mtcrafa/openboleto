@@ -21,27 +21,36 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
 
-<table class="table-boleto" cellpadding="0" cellspacing="0" border="0">
+<table class="table-boleto" cellpadding="0" cellspacing="0" border="0" style="font-family:Arial !important;font-size:12px;">
     <tbody>
     <tr>
-        <td valign="bottom" colspan="8" class="noborder nopadding">
-            <div class="logocontainer">
-                <div class="logobanco">
-                    <img src="<?php echo $logo_banco; ?>" alt="logotipo do banco">
-                </div>
-                <div class="codbanco"><?php echo $codigo_banco_com_dv ?></div>
-            </div>
-            <div class="linha-digitavel"><?php echo $linha_digitavel ?></div>
+		<td valign="bottom" colspan="8" class="nopadding last-child" style="border:none;">
+			<table cellpadding="0" cellspacing="0" border="0">
+				<thead>
+					<tr>
+						<th class="logobanco">
+							<img src="<?php echo $logo_banco; ?>" alt="logotipo do banco">
+						</th>
+						<th class="codbanco">
+							 <div class="codbanco"><?php echo $codigo_banco_com_dv ?></div>
+						</th>
+						<th width="100%">
+							<div class="linha-digitavel"><?php echo $linha_digitavel ?></div>
+						</th>
+					</tr>
+				</thead>
+			</table>
         </td>
     </tr>
     <tr>
-        <td colspan="7">
-            <div class="titulo">Local de pagamento</div>
+        <td colspan="7" width="400">
+            <div class="titulo">Local de Pagamento</div>
             <div class="conteudo"><?php echo $local_pagamento ?></div>
+            <div class="conteudo"></div>
         </td>
-        <td width="180">
+        <td width="180" class="last-child">
             <div class="titulo">Vencimento</div>
-            <div class="conteudo rtl"><?php echo $data_vencimento ?></div>
+	   		<table width="140" border="0"><tr><td class="featured" style="text-align:right;border:none;"><?php echo $data_vencimento ?></td></tr></table>
         </td>
     </tr>
     <tr>
@@ -49,40 +58,44 @@
             <div class="titulo">Cedente</div>
             <div class="conteudo"><?php echo $cedente ?></div>
         </td>
-        <td>
+        <td width="180" class="last-child">
             <div class="titulo">Agência/Código cedente</div>
-            <div class="conteudo rtl"><?php echo $agencia_codigo_cedente ?></div>
+	   		<table width="140" border="0"><tr><td style="text-align:right;border:none;"><?php echo $agencia_codigo_cedente ?></td></tr></table>
         </td>
     </tr>
     <tr>
         <td width="110" colspan="2">
             <div class="titulo">Data do documento</div>
-            <div class="conteudo"><?php echo $data_documento ?></div>
+            <table width="110" border="0"><tr><td class="conteudo" style="border:none;"><?php echo $data_documento ?></td></tr></table>
         </td>
-        <td width="120" colspan="2">
+        <td width="140" colspan="2">
             <div class="titulo">Nº documento</div>
-            <div class="conteudo"><?php echo $numero_documento ?></div>
+            <table width="130" border="0"><tr><td class="conteudo" style="border:none;"><?php echo $numero_documento ?></td></tr></table>
         </td>
-        <td width="60">
+        <td width="65">
             <div class="titulo">Espécie doc.</div>
-            <div class="conteudo"><?php echo $especie_doc ?></div>
+	    	<table width="65" border="0"><tr><td class="conteudo" style="border:none;"><?php echo $especie_doc ?></td></tr></table>
         </td>
-        <td>
+        <td width="55">
             <div class="titulo">Aceite</div>
+	    	<!-- <table width="55" border="0"><tr><td class="conteudo" style="border:none;"><?php echo $aceite ?></td></tr></table> -->
             <div class="conteudo"><?php echo $aceite ?></div>
         </td>
         <td width="110">
             <div class="titulo">Data processamento</div>
-            <div class="conteudo"><?php echo $data_processamento ?></div>
+            <table width="110" border="0"><tr><td class="conteudo" style="border:none;"><?php echo $data_processamento ?></td></tr></table>
         </td>
-        <td>
+        <td width="140" class="last-child">
             <div class="titulo">Nosso número</div>
-            <div class="conteudo rtl"><?php echo $nosso_numero ?></div>
+	    	<table width="140" border="0"><tr><td style="text-align:right;border:none;"><?php echo $nosso_numero ?></td></tr></table>
         </td>
     </tr>
     <tr>
-        <?php if (!$esconde_uso_banco) : ?>
-            <td<?php if (!$mostra_cip) : ?> colspan="2"<?php endif ?>>
+	<!-- Não foi retirado esse trexo de código, tão pouco testado -->
+        <?php if (! isset($esconde_uso_banco)) : ?>
+        	<?php if (!$mostra_cip) : ?>
+				<td colspan="2">
+			<?php endif ?>
                 <div class="titulo">Uso do banco</div>
                 <div class="conteudo"><?php echo $uso_banco ?></div>
             </td>
@@ -90,109 +103,108 @@
 
         <?php if ($mostra_cip) : ?>
             <!-- Campo exclusivo do Bradesco -->
-            <td width="20">
+            <td width="20" colspan="2">
                 <div class="titulo">CIP</div>
                 <div class="conteudo"><?php echo $cip ?></div>
             </td>
         <?php endif ?>
-
-        <td<?php if ($esconde_uso_banco) : ?> colspan="3"<?php endif; ?>>
+		<?php if(isset($esconde_uso_banco)) : ?>
+			<td colspan="2">
+				<div class="titulo">Uso do banco</div>
+			</td>
+		<?php endif;?>
+        <td width="65">
             <div class="titulo">Carteira</div>
-            <div class="conteudo"><?php echo $carteira ?></div>
+            <table width="65" border="0"><tr><td class="conteudo" style="border:none;"><?php echo $carteira ?></td></tr></table>
         </td>
-        <td width="35">
+        <td width="65">
             <div class="titulo">Espécie</div>
-            <div class="conteudo"><?php echo $especie ?></div>
+	    	<table width="65" border="0"><tr><td class="conteudo" style="border:none;"><?php echo $especie ?></td></tr></table>
         </td>
-        <td colspan="2">
+        <td width="135" colspan="2">
             <div class="titulo">Quantidade</div>
-            <div class="conteudo"><?php echo $quantidade ?></div>
+            <table width="135" border="0"><tr><td class="conteudo" style="border:none;"><?php echo $quantidade ?></td></tr></table>
         </td>
         <td width="110">
-            <div class="titulo">Valor</div>
-            <div class="conteudo"><?php echo $valor_unitario ?></div>
+            <div class="titulo">(X) Valor</div>
+	    	<table width="110" border="0"><tr><td class="conteudo" style="border:none;"><?php echo $valor_unitario ?></td></tr></table>
         </td>
-        <td>
+        <td width="180" class="last-child final-field">
             <div class="titulo">(=) Valor do Documento</div>
-            <div class="conteudo rtl"><?php echo $valor_documento ?></div>
+	    	<table width="140" border="0"><tr><td class="featured" style="text-align:right;border:none;"><?php echo $valor_documento ?></td></tr></table>
         </td>
     </tr>
     <tr>
         <td colspan="7">
-            <div class="titulo">Instruções (Texto de responsabilidade do cedente)</div>
+            <div class="titulo">Instruções (Todas as informações deste bloqueto são de exclusiva responsabilidade do cedente)</div>
         </td>
-        <td>
+        <td width="180" class="last-child final-field">
             <div class="titulo">(-) Descontos / Abatimentos</div>
-            <div class="conteudo rtl"><?php echo $desconto_abatimento ?></div>
+	    	<table width="140" border="0"><tr><td style="text-align:right;border:none;"><?php echo $desconto_abatimento ?></td></tr></table>
         </td>
     </tr>
     <tr>
-        <td colspan="7" class="notopborder">
+        <td colspan="7" style="border-top:none;">
             <div class="conteudo"><?php echo $instrucoes[0]; ?></div>
             <div class="conteudo"><?php echo $instrucoes[1]; ?></div>
         </td>
-        <td>
+        <td width="180" class="last-child final-field">
             <div class="titulo">(-) Outras deduções</div>
-            <div class="conteudo rtl"><?php echo $outras_deducoes ?></div>
+	   		<table width="140" border="0"><tr><td style="text-align:right;border:none;"><?php echo $outras_deducoes ?></td></tr></table>
         </td>
     </tr>
     <tr>
-        <td colspan="7" class="notopborder">
+        <td colspan="7" class="notopborder" style="border-top:none;">
             <div class="conteudo"><?php echo $instrucoes[2]; ?></div>
             <div class="conteudo"><?php echo $instrucoes[3]; ?></div>
         </td>
-        <td>
+        <td width="180" class="last-child final-field">
             <div class="titulo">(+) Mora / Multa</div>
-            <div class="conteudo rtl"><?php echo $mora_multa ?></div>
+	    	<table width="140" border="0"><tr><td style="text-align:right;border:none;"><?php echo $mora_multa ?></td></tr></table>
         </td>
     </tr>
     <tr>
-        <td colspan="7" class="notopborder">
+        <td colspan="7" style="border-top:none;">
             <div class="conteudo"><?php echo $instrucoes[4]; ?></div>
             <div class="conteudo"><?php echo $instrucoes[5]; ?></div>
         </td>
-        <td>
+        <td width="180" class="last-child final-field">
             <div class="titulo">(+) Outros acréscimos</div>
-            <div class="conteudo rtl"><?php echo $outros_acrescimos ?></div>
+	    	<table width="140" border="0"><tr><td style="text-align:right;border:none;"><?php echo $outros_acrescimos ?></td></tr></table>
         </td>
     </tr>
     <tr>
-        <td colspan="7" class="notopborder">
+        <td colspan="7" style="border-top:none;">
             <div class="conteudo"><?php echo $instrucoes[6]; ?></div>
             <div class="conteudo"><?php echo $instrucoes[7]; ?></div>
         </td>
-        <td>
+        <td width="180" class="last-child final-field">
             <div class="titulo">(=) Valor cobrado</div>
-            <div class="conteudo rtl"><?php echo $valor_cobrado ?></div>
+	    	<table width="140" border="0"><tr><td style="text-align:right;border:none;"><?php echo $valor_cobrado ?></td></tr></table>
         </td>
     </tr>
     <tr>
-        <td colspan="7">
-            <div class="titulo">Sacado</div>
+        <td colspan="7" class="final-field" style="border-bottom: 1px solid #000000;">
+            <div class="titulo">SACADO AVALISTA:</div>
             <div class="conteudo"><?php echo $sacado ?></div>
             <div class="conteudo"><?php echo $sacado_endereco1 ?></div>
             <div class="conteudo"><?php echo $sacado_endereco2 ?></div>
 
         </td>
-        <td class="noleftborder">
-            <div class="titulo" style="margin-top: 50px">Cód. Baixa</div>
+        <td class="last-child" style="border-bottom: 1px solid #000000; border-left:none;">
+            <div class="titulo" style="margin-top: 50px">CNPJ/CPF:</div>
         </td>
     </tr>
-
     <tr>
-        <td colspan="6" class="noleftborder">
-            <div class="titulo">Sacador/Avalista <div class="conteudo sacador"><?php echo $sacador_avalista; ?></div></div>
-        </td>
-        <td colspan="2" class="norightborder noleftborder">
-            <div class="conteudo noborder rtl">Autenticação mecânica - Ficha de Compensação</div>
+        <td colspan="8" class="last-child" style="border:none;text-align:right;">
+            <div class="conteudo rtl">Ficha de Compensação / Autenticação mecânica</div>
         </td>
     </tr>
-
     <tr>
-        <td colspan="8" class="noborder">
-            <?php echo $codigo_barras ?>
-        </td>
+	<td colspan="8" class="last-child" style="border:none;">
+ 	    <?php echo $codigo_barras; ?>
+	</td>
     </tr>
-
     </tbody>
 </table>
+<div class="linha-pontilhada">&nbsp;</div>

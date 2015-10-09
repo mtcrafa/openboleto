@@ -21,167 +21,183 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-@media print {
-    .noprint {
-        display:none;
-    }
-}
-
 body{
     background-color: #ffffff;
     margin-right: 0;
+    font-family: Arial, Sans-Serif;
+    font-size: 12px;
+    color: #000000;
 }
-
+.info {
+    font-size:10px;
+}
 .table-boleto {
-    font: 9px Arial;
-    width: 666px;
+    width: 100%;
 }
 
 .table-boleto td {
     border-left: 1px solid #000;
     border-top: 1px solid #000;
+    vertical-align: top;
+    padding: 2px 2px;
 }
 
-.table-boleto td:last-child {
+td.last-child{
     border-right: 1px solid #000;
 }
 
-.table-boleto .titulo {
-    color: #000033;
-}
-
 .linha-pontilhada {
-    color: #000033;
-    font: 9px Arial;
+    color: #000000;
+    font-size: 9px;
     width: 100%;
-    border-bottom: 1px dashed #000;
+    border-bottom: 2px dotted #000;
     text-align: right;
     margin-bottom: 10px;
 }
 
-.table-boleto .conteudo {
-    font: bold 10px Arial;
-    height: 13px;
+.conteudo {
+    text-align: left;
 }
 
-.table-boleto .sacador {
+.sacador {
     display: inline;
     margin-left: 5px;
 }
 
-.table-boleto td {
-    padding: 1px 4px;
-}
-
-.table-boleto .noleftborder {
-    border-left: none !important;
-}
-
-.table-boleto .notopborder {
-    border-top: none !important;
-}
-
-.table-boleto .norightborder {
-    border-right: none !important;
-}
-
-.table-boleto .noborder {
-    border: none !important;
-}
-
-.table-boleto .bottomborder {
+.bottomborder {
     border-bottom: 1px solid #000 !important;
 }
 
-.table-boleto .rtl {
+.rtl {
     text-align: right;
 }
 
-.table-boleto .logobanco {
+th.logobanco {
+    border: none;
+    padding: 5px 0px;
+}
+
+.logobanco {
     display: inline-block;
     max-width: 150px;
 }
 
-.table-boleto .logocontainer {
+.logocontainer {
     width: 257px;
     display: inline-block;
 }
 
-.table-boleto .logobanco img {
+.logobanco img {
     margin-bottom: -5px;
 }
 
-.table-boleto .codbanco {
-    font: bold 20px Arial;
-    padding: 1px 5px;
-    display: inline;
+th.codbanco {
+	border: none;
+	margin-left: -10px;
+}
+
+.codbanco {
+    font-size: 12px;
+    font-weight: bold;
     border-left: 2px solid #000;
     border-right: 2px solid #000;
-    width: 51px;
     margin-left: 25px;
+    padding: 1px 5px;
+    width: 45px;
 }
 
-.table-boleto .linha-digitavel {
-    font: bold 14px Arial;
+.linha-digitavel {
+    font-size:15px;
     display: inline-block;
-    width: 406px;
-    text-align: right;
+    width: 100%;
 }
 
-.table-boleto .nopadding {
+.nopadding {
     padding: 0px !important;
 }
 
-.table-boleto .caixa-gray-bg {
+.caixa-gray-bg {
     font-weight: bold;
     background: #ccc;
 }
 
-.info {
-    font: 11px Arial;
-}
-
-.info-empresa {
-    font: 11px Arial;
-}
-
 .header {
-    font: bold 13px Arial;
+    font-weight: bold;
     display: block;
     margin: 4px;
 }
 
-.barcode {
-    height: 50px;
+.recibo-sacado {
+    padding-bottom: 10px;
+    text-align: right;
+    font-weight: bold;
 }
 
-.barcode div {
-    display: inline-block;
-    height: 100%;
+.top-data {
+   font-size: 10px;
+   font-weight: bold;
+   text-align: left;
 }
 
-.barcode .black {
-    border-color: #000;
-    border-left-style: solid;
-    width: 0px;
+.top-value, .bottom-value, .top-due-date, .bottom-due-date {
+    font-weight: bold;
 }
 
-.barcode .white {
-    background: #fff;
+.top-value, .top-due-date {
+    font-size: 10px;
+    padding-top: 2px;
+    padding-left: 3px;
 }
 
-.barcode .thin.black {
-    border-left-width: 1px;
+.bottom-value, .bottom-due-date {
+    font-size: 14px;
+    text-align: center;
 }
 
-.barcode .large.black {
-    border-left-width: 3px;
+/* Gambi para funcionar no gerador de pdf da mPDF */
+.top-value {
+    border-top: 1px solid #000000;
+    border-left: 1px solid #000000;
+    border-right: 1px solid #000000;
+    padding: 0 20px;
 }
 
-.barcode .thin.white {
-    width: 1px;
+.bottom-value {
+    border-bottom: 1px solid #000000;
+    border-left: 1px solid #000000;
+    border-right: 1px solid #000000;
 }
 
-.barcode .large.white {
-    width: 3px;
+.top-due-date {
+    border-top: 1px solid #000000;
+    border-right: 1px solid #000000;
+    padding: 0 20px;
 }
+
+.bottom-due-date {
+    border-bottom: 1px solid #000000;
+    border-right: 1px solid #000000;
+}
+
+.final-field {
+    height: 30px;
+}
+
+.featured {
+    font-size: 14px;
+    font-weight: bold;
+    display: table;
+}
+
+.title-featured, .titulo {
+    font-weight: bold;
+}
+
+.titulo {
+    font-size: 10px;
+}
+
+.recibo-boleto {
+    font-size: 10px;
+}
+

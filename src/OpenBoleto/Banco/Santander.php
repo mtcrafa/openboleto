@@ -41,95 +41,134 @@ use OpenBoleto\Exception;
  */
 class Santander extends BoletoAbstract
 {
-    /**
-     * Código do banco
-     * @var string
-     */
-    protected $codigoBanco = '033';
+	/**
+	 * Código do banco
+	 * @var string
+	 */
+	protected $codigoBanco = '033';
 
-    /**
-     * Localização do logotipo do banco, referente ao diretório de imagens
-     * @var string
-     */
-    protected $logoBanco = 'santander.jpg';
+	/**
+	 * Localização do logotipo do banco, referente ao diretório de imagens
+	 * @var string
+	 */
+	protected $logoBanco = 'santander.jpg';
 
-    /**
-     * Linha de local de pagamento
-     * @var string
-     */
-    protected $localPagamento = 'Pagar preferencialmente no Banco Santander';
+	/**
+	 * Linha de local de pagamento
+	 * @var string
+	 */
+	protected $localPagamento = 'ATE O VENCIMENTO PAGUE PREFERENCIALMENTE NO SANTANDER<BR>APOS O VENCIMENTO PAGUE SOMENTE NO SANTANDER';
 
-    /**
-     * Define as carteiras disponíveis para este banco
-     * @var array
-     */
-    protected $carteiras = array('101', '102', '201');
+	/**
+	 * Define as carteiras disponíveis para este banco
+	 * @var array
+	 */
+	protected $carteiras = array('101', '102', '201');
 
-    /**
-     * Define os nomes das carteiras para exibição no boleto
-     * @var array
-     */
-    protected $carteirasNomes = array('101' => 'Cobrança Simples ECR', '102' => 'Cobrança Simples CSR');
+	/**
+	 * Define os nomes das carteiras para exibição no boleto
+	 * @var array
+	 */
+	protected $carteirasNomes = array('101' => 'Cobrança Simples ECR', '102' => 'Cobrança Simples CSR');
 
-    /**
-     * Define o valor do IOS - Seguradoras (Se 7% informar 7. Limitado a 9%) - Demais clientes usar 0 (zero)
-     * @var int
-     */
-    protected $ios;
+	/**
+	 * Define o valor do IOS - Seguradoras (Se 7% informar 7. Limitado a 9%) - Demais clientes usar 0 (zero)
+	 * @var int
+	 */
+	protected $ios;
 
-    /**
-     * Define o valor do IOS
-     *
-     * @param int $ios
-     */
-    public function setIos($ios)
-    {
-        $this->ios = $ios;
-    }
+	/**
+	 * Define o valor do IOS
+	 *
+	 * @param int $ios
+	 */
+	public function setIos($ios)
+	{
+		$this->ios = $ios;
+	}
 
-    /**
-     * Retorna o atual valor do IOS
+	/**
+	 * Retorna o atual valor do IOS
+	 *
+	 * @return int
+	 */
+	public function getIos()
+	{
+		return $this->ios;
+	}
+
+	/**
+	 * Gera o Nosso Número.
+	 *
+	 * @return string
+	 */
+	protected function gerarNossoNumero()
+	{
+		return self::zeroFill($this->getSequencial(), 12) . ' ' . $this->calcDvNossoNumero();
+	}
+
+	/**
+	 * Método para gerar o código da posição de 20 a 44
+	 *
+	 * @return string
+	 * @throws \OpenBoleto\Exception
+	 */
+	public function getCampoLivre()
+	{
+		return '9' . self::zeroFill($this->getConta(), 7) .
+			str_replace(' ', '', $this->getNossoNumero()) .
+			self::zeroFill($this->getIos(), 1) .
+			self::zeroFill($this->getCarteira(), 3);
+	}
+
+	/**
+	 * Define variáveis da view específicas do boleto do Santander
+	 *
+	 * @return array
+	 */
+	public function getViewVars()
+	{
+		return array(
+			'esconde_uso_banco' => true,
+		);
+	}
+
+	public function calcDvNossoNumero(){
+	    $soma = $this->calcMod11(static::zeroFill($this->getSequencial(), 12));
+	    $resto = $soma % 11;
+	    if($resto == 10) return 1;
+	    if($resto == 1 or $resto == 0) return 0;
+	    return 11 - $resto;
+	}
+
+	public function calcMod11($n){
+	    $t = strlen ($n) - 1;
+	    $fator = 2;
+	    for ($i=$t;$i>=0;$i--) {
+			$soma += $n{$i} * $fator;
+			$fator = ($fator >= 9) ? 2 : ++$fator;
+		}
+		return $soma;
+	}
+
+	/**
+     * Retorna o dígito verificador da conta
      *
      * @return int
      */
-    public function getIos()
+    public function getContaDv()
     {
-        return $this->ios;
-    }
+        return null;
+	}
 
-    /**
-     * Gera o Nosso Número.
+	/**
+     * Retorna o campo Agência/Cedente do boleto
      *
      * @return string
      */
-    protected function gerarNossoNumero()
+    public function getAgenciaCodigoCedente()
     {
-        return self::zeroFill($this->getSequencial(), 13);
-    }
-
-    /**
-     * Método para gerar o código da posição de 20 a 44
-     *
-     * @return string
-     * @throws \OpenBoleto\Exception
-     */
-    public function getCampoLivre()
-    {
-        return '9' . self::zeroFill($this->getConta(), 7) .
-            $this->getNossoNumero() .
-            self::zeroFill($this->getIos(), 1) .
-            self::zeroFill($this->getCarteira(), 3);
-    }
-
-    /**
-     * Define variáveis da view específicas do boleto do Santander
-     *
-     * @return array
-     */
-    public function getViewVars()
-    {
-        return array(
-            'esconde_uso_banco' => true,
-        );
+        $conta = $this->getContaDv() !== null ? $this->getConta() . '-' . $this->getContaDv() : $this->getConta();
+        return  $this->getAgencia() . ' / ' . $conta;
     }
 }

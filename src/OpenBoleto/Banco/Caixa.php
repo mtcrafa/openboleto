@@ -79,6 +79,13 @@ class Caixa extends BoletoAbstract
      */
     protected $layout = 'caixa.phtml';
 
+	/**
+     * Campo de aceite
+     * @var string
+     */
+    protected $aceite = 'N';
+
+
     /**
      * Define o número da conta
      *
